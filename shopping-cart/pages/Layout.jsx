@@ -27,7 +27,7 @@ const Layout = () => {
     };
     fetchProducts();
   }, []);
-  console.log(products);
+
   return (
     <div>
       <nav>
@@ -36,7 +36,7 @@ const Layout = () => {
         <Link to="/cart">Cart</Link>
       </nav>
 
-      <Outlet />
+      <Outlet context={{ products, cart, loading, error }} />
     </div>
   );
 };
