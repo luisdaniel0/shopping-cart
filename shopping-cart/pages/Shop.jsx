@@ -2,7 +2,7 @@ import { useOutletContext } from "react-router-dom";
 import ProductCard from "../src/components/ProductCard";
 
 const Shop = () => {
-  const { products, cart, loading, error } = useOutletContext();
+  const { products, cart, loading, error, addToCart } = useOutletContext();
 
   if (loading) {
     return <div>Loading..</div>;
@@ -16,7 +16,7 @@ const Shop = () => {
     <div>
       <h1>Shop</h1>
       {products.map((product) => (
-        <ProductCard product={product} key={product.id} />
+        <ProductCard product={product} key={product.id} addToCart={addToCart} />
       ))}
     </div>
   );

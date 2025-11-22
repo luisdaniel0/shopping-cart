@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, addToCart }) => {
   const [quantity, setQuantity] = useState(1);
 
   function handleDecrement() {
@@ -26,7 +26,12 @@ const ProductCard = ({ product }) => {
           min="1"
         />
         <button onClick={handleIncrement}>+</button>
-        <button className="addToCartBtn">Add to Cart</button>
+        <button
+          className="addToCartBtn"
+          onClick={() => addToCart(product.id, quantity)}
+        >
+          Add to Cart
+        </button>
       </div>
     </div>
   );

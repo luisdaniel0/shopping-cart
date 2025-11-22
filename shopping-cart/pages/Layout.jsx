@@ -28,6 +28,22 @@ const Layout = () => {
     fetchProducts();
   }, []);
 
+  function addToCart(productId, quantity) {
+    const existingItem = cart.find((item) => item.productId === productId);
+
+    if (existingItem) {
+      setCart(
+        cart.map((item) =>
+          item.productId === productId
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+      );
+    } else {
+      setCart([...cart, { productId, quantity }]);
+    }
+  }
+
   return (
     <div>
       <nav>
@@ -36,7 +52,7 @@ const Layout = () => {
         <Link to="/cart">Cart</Link>
       </nav>
 
-      <Outlet context={{ products, cart, loading, error }} />
+      <Outlet context={{ products, cart, loading, error, addToCart }} />
     </div>
   );
 };
