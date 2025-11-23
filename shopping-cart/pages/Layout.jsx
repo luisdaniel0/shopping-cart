@@ -61,11 +61,13 @@ const Layout = () => {
 
   function decreaseQuantity(productId) {
     setCart(
-      cart.map((item) =>
-        item.productId === productId
-          ? { ...item, quantity: item.quantity - 1 }
-          : item
-      )
+      cart
+        .map((item) =>
+          item.productId === productId
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter((item) => item.quantity > 0)
     );
   }
 
