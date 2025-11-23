@@ -49,11 +49,46 @@ const Layout = () => {
     return accum + current.quantity;
   }, 0);
 
+  function increaseQuantity(productId) {
+    setCart(
+      cart.map((item) =>
+        item.productId === productId
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
+    );
+  }
+
+  function decreaseQuantity(productId) {
+    setCart(
+      cart.map((item) =>
+        item.productId === productId
+          ? { ...item, quantity: item.quantity - 1 }
+          : item
+      )
+    );
+  }
+
+  function removeFromCart(productId) {
+    setCart(cart.filter((item) => item.productId !== productId));
+  }
+
   return (
     <div>
       <Navbar productsInCart={productsInCart} />
 
-      <Outlet context={{ products, cart, loading, error, addToCart }} />
+      <Outlet
+        context={{
+          products,
+          cart,
+          loading,
+          error,
+          addToCart,
+          increaseQuantity,
+          decreaseQuantity,
+          removeFromCart,
+        }}
+      />
     </div>
   );
 };
