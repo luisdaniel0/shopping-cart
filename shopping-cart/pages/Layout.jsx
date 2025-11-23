@@ -1,5 +1,6 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
+import Navbar from "../src/components/Navbar";
 
 const Layout = () => {
   const [products, setProducts] = useState([]);
@@ -44,13 +45,13 @@ const Layout = () => {
     }
   }
 
+  let productsInCart = cart.reduce((accum, current) => {
+    return accum + current.quantity;
+  }, 0);
+
   return (
     <div>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/shop">Shop</Link>
-        <Link to="/cart">Cart</Link>
-      </nav>
+      <Navbar productsInCart={productsInCart} />
 
       <Outlet context={{ products, cart, loading, error, addToCart }} />
     </div>
