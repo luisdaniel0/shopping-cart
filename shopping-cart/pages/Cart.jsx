@@ -19,6 +19,10 @@ const Cart = () => {
     return <h1>Error..{error}</h1>;
   }
 
+  if (cart.length === 0) {
+    return <h1>Your Cart is empty</h1>;
+  }
+
   const totalPrice = cart.reduce((total, cartItem) => {
     const product = products.find((p) => p.id === cartItem.productId);
     return total + Math.round(product.price) * cartItem.quantity;
